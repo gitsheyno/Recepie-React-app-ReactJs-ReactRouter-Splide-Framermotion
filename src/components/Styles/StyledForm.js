@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StyledForm = styled.form`
 
 width:800px;
+max-width: 100%;
 margin: 0 auto;
 display: flex;
 align-items: center;
@@ -17,7 +18,10 @@ input{
     font-size: 1.3rem;
     color:white;
     width: 100%;
+
 }
+
+
 `
 
 export const Search = styled.div`

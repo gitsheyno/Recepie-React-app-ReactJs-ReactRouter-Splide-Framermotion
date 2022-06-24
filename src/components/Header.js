@@ -11,7 +11,6 @@ const Header = () => {
         <Container>
           <Filter />
           <StyledUl>
-             
               <Slink to="cuisine/italian">
                 <FaPizzaSlice />
                 <h4>Italian</h4>
