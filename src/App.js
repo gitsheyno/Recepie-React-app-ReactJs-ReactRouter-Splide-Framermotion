@@ -4,14 +4,17 @@ import Home from './components/Home';
 import About from './components/About';
 import { GlobalStyles } from './components/Styles/GlobalSyleComponent'
 import Cusine from './components/Cusine';
+import Search from './components/Search';
 import Dec from './components/Dec';
 import { ThemeProvider } from 'styled-components'
 import useWindowSize from '../src/hooks/useWindowSize';
+import { useState } from 'react'
 function App() {
   const width = useWindowSize()
   const theme = {
     mobile: '768px'
   }
+  const [id, setId] = useState('')
   return (
     <ThemeProvider theme={theme}>
       <>
@@ -22,10 +25,16 @@ function App() {
 
               width={width} />} />
             <Route path="cuisine">
-              <Route path=":type" element={<Cusine />} />
-              <Route path=':type/dec' element={<Dec />} />
+              <Route path=":type" element={<Cusine
+                setId={setId}
+              />} />
             </Route>
-            <Route path="about" element={<About />} />
+            <Route path="searched">
+              <Route path=":search" element={<Search
+                setId={setId}
+              />} />
+            </Route>
+            <Route path="recipe/:name" element={<Dec />} />
           </Route>
         </Routes>
 

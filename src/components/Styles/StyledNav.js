@@ -8,7 +8,6 @@ list-style-type: none;
 text-align: center;
 width:100%;
 justify-content: center;
-
 `
 
 export const Slink = styled(NavLink)`
@@ -19,8 +18,8 @@ align-items: center;
 border-radius: 50%;
 margin-right: 2rem;
 text-decoration: none;
-width: 6rem;
-height: 6rem;
+width: 7rem;
+height: 7rem;
 background-color: #444;
 
 cursor: pointer;
@@ -43,7 +42,22 @@ svg{
     }
     h4{
         color:black
-    }
+    } 
 }
+
+@media(max-width:700px){
+        h4{
+            font-size: 0.9rem;
+        }
+        width: 6rem;
+        height: 6rem;
+    }
+    @media(max-width:550px){
+        h4{
+            font-size: 0.9rem;
+        }
+        width: 7rem;
+        height: 7rem;
+    }
 
 `

@@ -27,7 +27,7 @@ const Header = () => {
               </Slink>
             
             
-              <Slink to="cuisine/Japanese">
+              <Slink to="cuisine/Chinese">
                 <GiChopsticks />
                 <h4>Japanese</h4>
               </Slink>

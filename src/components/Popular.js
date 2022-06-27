@@ -4,6 +4,7 @@ import '@splidejs/react-splide/css'
 import styled from 'styled-components';
 import { StyledCard } from './Styles/StyledCard';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'
 const Popular = ({ width }) => {
     const [popular, setPopular] = useState([])
     const [amount, setAmount] = useState(3)
@@ -59,18 +60,21 @@ const Popular = ({ width }) => {
                         arrows: false
                     }}>
                     {popular.map(recepie => (
+
                         <SplideSlide
                             key={recepie.id}
-
                         >
-                            <StyledCard>
-                                <Gradient />
+                            <Link to={`/recipe/${recepie.id}`}>
+                                <StyledCard>
+                                    <Gradient />
 
-                                <p
-                                >{recepie.title}</p>
-                                <img src={recepie.image} alt={recepie.title} />
-                            </StyledCard>
+                                    <p
+                                    >{recepie.title}</p>
+                                    <img src={recepie.image} alt={recepie.title} />
+                                </StyledCard>
+                            </Link>
                         </SplideSlide>
+
                     ))}
                 </Splide>
             </Wrapper>

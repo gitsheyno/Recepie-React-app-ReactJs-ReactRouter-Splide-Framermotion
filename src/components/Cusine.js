@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom"
 import { Container } from "./Styles/StyledContainer"
 import { useEffect, useState } from "react"
 import styled from "styled-components"
-const Cusine = () => {
+const Cusine = ({ setId }) => {
     const { type } = useParams()
     const [cuisine, setCuisine] = useState([])
     useEffect(() => {
@@ -10,26 +10,32 @@ const Cusine = () => {
             const data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=bf644fb4e022468fa632e58a5fe2701d&cuisine=${name}`)
             const recipes = await data.json()
             setCuisine(recipes.results)
-            console.log(recipes.result)
+            console.log(recipes)
+
         }
         getCuisine(type)
         console.log(type)
     }, [type])
+
+    const handleSet = (e) => {
+        console.log(e.target)
+    }
     return (
 
-            <Grid>
-                {cuisine.map(item => (
-                    <Link
-                        key={item.id}
-                        to={`/cuisine/${type}/dec`}>
-                        <Card >
-                            <img src={item.image} alt={item.title} />
-                            <h4>{item.title}</h4>
-                        </Card>
-                    </Link>
-                ))}
-            </Grid>
-    
+        <Grid>
+            {cuisine.map(item => (
+                <Link
+                    onClick={(e) => handleSet(e)}
+                    key={item.id}
+                    to={`/recipe/${item.id}`}>
+                    <Card >
+                        <img src={item.image} alt={item.title} />
+                        <h4>{item.title}</h4>
+                    </Card>
+                </Link>
+            ))}
+        </Grid>
+
     )
 }
 
@@ -45,11 +51,11 @@ img{
     border-radius:2rem;
 }
 a{
-    text-decoration:none
+    text-decoration:none;
 }
 h4{
     text-align:center;
-    padding:1rem
+    padding:1rem;
 }
 `
 export default Cusine
