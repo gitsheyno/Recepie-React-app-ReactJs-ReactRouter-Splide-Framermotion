@@ -2,7 +2,7 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import { Container } from './Styles/StyledContainer';
 import '@splidejs/react-splide/css'
 import styled from 'styled-components';
-
+import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 const Veji = () => {
     const [popular, setPopular] = useState([])
@@ -34,33 +34,35 @@ const Veji = () => {
         else {
             setAmount(1)
         }
-    
+
         console.log(window.innerWidth)
     }
     return (
         <Container>
             <Wrapper>
-                <h3>Popular pics</h3>
+                <h3>Vegeterian picks</h3>
                 <Splide
                     onResize={(e) => update(e)}
                     options={{
                         perPage: amount,
                         gap: '2rem',
-                        pagination: true,
+                        pagination: false,
                         drag: 'free',
-                        arrows: true
+                        arrows: false
                     }}>
                     {popular.map(recepie => (
                         <SplideSlide
                             key={recepie.id}
                         >
-                            <Card>
-                                <Gradient />
+                            <Link to={`/recipe/${recepie.id}`}>
+                                <Card>
+                                    <Gradient />
 
-                                <p
-                                >{recepie.title}</p>
-                                <img src={recepie.image} alt={recepie.title} />
-                            </Card>
+                                    <p
+                                    >{recepie.title}</p>
+                                    <img src={recepie.image} alt={recepie.title} />
+                                </Card>
+                            </Link>
                         </SplideSlide>
                     ))}
                 </Splide>
@@ -70,8 +72,10 @@ const Veji = () => {
 }
 const Wrapper = styled.div`
 margin:4rem 0;
-
 padding: 20px;
+h3{
+    margin-bottom: 20px;
+}
 `
 const Card = styled.div`
 min-height: 20rem;

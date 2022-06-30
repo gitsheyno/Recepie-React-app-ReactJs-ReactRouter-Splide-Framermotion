@@ -2,6 +2,8 @@ import { useParams, Link } from "react-router-dom"
 import { Container } from "./Styles/StyledContainer"
 import { useEffect, useState } from "react"
 import styled from "styled-components"
+import { motion } from 'framer-motion'
+
 const Cusine = ({ setId }) => {
     const { type } = useParams()
     const [cuisine, setCuisine] = useState([])
@@ -21,25 +23,30 @@ const Cusine = ({ setId }) => {
         console.log(e.target)
     }
     return (
-
-        <Grid>
-            {cuisine.map(item => (
-                <Link
-                    onClick={(e) => handleSet(e)}
-                    key={item.id}
-                    to={`/recipe/${item.id}`}>
-                    <Card >
-                        <img src={item.image} alt={item.title} />
-                        <h4>{item.title}</h4>
-                    </Card>
-                </Link>
-            ))}
-        </Grid>
-
+        <Container>
+            <Grid
+                animate={{ opacity: 1 }}
+                initial={{ opacity: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+            >
+                {cuisine.map(item => (
+                    <Link
+                        onClick={(e) => handleSet(e)}
+                        key={item.id}
+                        to={`/recipe/${item.id}`}>
+                        <Card >
+                            <img src={item.image} alt={item.title} />
+                            <h4>{item.title}</h4>
+                        </Card>
+                    </Link>
+                ))}
+            </Grid>
+        </Container>
     )
 }
 
-const Grid = styled.div`
+const Grid = styled(motion.div)`
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(20rem,1fr));
 grid-gap:3rem

@@ -1,7 +1,7 @@
 import {Link, useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
 import styled from "styled-components"
-
+import { Container } from "./Styles/StyledContainer"
 const Search = () => {
     const [searched, setSearched] = useState([])
     const [data, setData] = useState(false)
@@ -28,7 +28,7 @@ const Search = () => {
         console.log(search)
     }, [search])
     return (
-        <>
+        <Container>
             {data &&
                 <Grid>
                     {searched.map(item => (
@@ -49,7 +49,7 @@ const Search = () => {
                     <Link to="/">Please visit our home page</Link>
                 </>
             }
-        </>
+        </Container>
     )
 }
 
